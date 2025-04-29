@@ -1,0 +1,75 @@
+@use './styles/navigation';
+@use './styles/indicators';
+@use './styles/responsive';
+
+/* Carousel style */
+.meros-carousel {
+    position: relative;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.meros-carousel-loading-indicator {
+    position: fixed;
+    width: 200px; /* You can tweak this */
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 2px;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.meros-carousel-loading-indicator::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 40%;
+    background: #0af; /* Customize this to your brand color */
+    animation: loading-bar 1.2s ease-in-out infinite;
+    border-radius: 2px;
+}
+
+@keyframes loading-bar {
+    0%   { transform: translateX(-100%); }
+    50%  { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+
+.meros-carousel-slide {
+    position: absolute!important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    align-content: var(--align-slide-content, 'center');
+}
+
+.meros-carousel-slide-content {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+}
+
+.meros-carousel-overlay,
+.meros-carousel-parallax-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.meros-carousel-overlay {
+    height: 100%;
+    background-color: rgba(var(--overlay-color, 0, 0, 0), var(--overlay-opacity, 0.2));
+    z-index: 0;
+}
+
+.meros-carousel-parallax-bg {
+    top: -10%;
+    left: 0;
+    height: 150%;
+    z-index: -1;
+}
+
+

@@ -1,0 +1,52 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "6a13ea75546625d8699dcdc95fe6269d",
+    "packages": [
+        {
+            "name": "mirror-and-mountain/meros-contracts",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "/Volumes/MM Dev/projects/wordpress/meros/packages/meros-contracts",
+                "reference": "077eca6cc5eaaaa10a135ac99f4088656956f66d"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MM\\Meros\\Contracts\\": "src/Contracts",
+                    "MM\\Meros\\Traits\\": "src/Traits",
+                    "MM\\Meros\\Helpers\\": "src/Helpers"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "tmw-mm",
+                    "email": "toby@mirrorandmountain.com"
+                }
+            ],
+            "description": "Pending",
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "mirror-and-mountain/meros-contracts": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}

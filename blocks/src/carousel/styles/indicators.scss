@@ -1,0 +1,18 @@
+/* Carousel indicator styles */
+.meros-carousel-indicators {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    z-index: 30;
+    display: flex;
+    transform: translateX(-50%);
+}
+
+.meros-carousel-indicators > *:not(:last-child) {
+    margin-right: 0.75rem;
+}
+
+[dir="rtl"] .meros-carousel-indicators > *:not(:last-child) {
+    margin-right: 0;
+    margin-left: 0.75rem;
+}

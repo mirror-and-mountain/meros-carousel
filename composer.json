@@ -1,0 +1,24 @@
+{
+    "name": "mirror-and-mountain/meros-carousel",
+    "description": "A dynamic carousel block for Wordpress",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "version": "dev-main",
+    "authors": [
+        {
+            "name": "tmw-mm",
+            "email": "toby@mirrorandmountain.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "repositories": {
+        "mirror-and-mountain/meros-contracts": {
+            "type": "path",
+            "url": "/Volumes/MM Dev/projects/wordpress/meros/packages/meros-contracts",
+            "options": {
+                "symlink": true
+            }
+        }
+    },
+    "require": {}
+}

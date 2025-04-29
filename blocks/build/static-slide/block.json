@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "meros/static-slide",
+  "version": "0.1.0",
+  "title": "Static Slide",
+  "category": "widgets",
+  "icon": "format-image",
+  "parent": [
+    "meros/carousel"
+  ],
+  "description": "A customisable slide block for the Meros Carousel block",
+  "example": {},
+  "supports": {
+    "layout": {
+      "default": {
+        "type": "constrained"
+      },
+      "allowEditing": true,
+      "allowSwitching": false,
+      "allowCustomContentAndWideSize": true
+    },
+    "spacing": {
+      "margin": false,
+      "padding": true
+    },
+    "background": {
+      "backgroundImage": true,
+      "backgroundSize": true
+    },
+    "color": {
+      "gradients": true,
+      "background": true,
+      "text": true
+    }
+  },
+  "textdomain": "meros-carousel",
+  "editorScript": "file:./index.js",
+  "attributes": {
+    "videoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "alignSlideContent": {
+      "type": "string",
+      "default": "center"
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "spacing": {
+          "padding": "auto"
+        },
+        "overlay": {
+          "color": "dark",
+          "opacity": 20
+        },
+        "color": {
+          "background": "#8ED1FC"
+        }
+      }
+    }
+  }
+}

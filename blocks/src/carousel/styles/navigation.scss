@@ -1,0 +1,49 @@
+/* Carousel navigation styles */
+.meros-carousel-next,
+.meros-carousel-prev {
+    position: absolute;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    height: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    outline: none;
+}
+
+.meros-carousel-prev {
+    inset-inline-start: 0;
+}
+
+.meros-carousel-next {
+    inset-inline-end: 0;
+}
+
+.meros-carousel-next-icon,
+.meros-carousel-prev-icon {
+    display: inline-flex;
+    height: 2.5rem; /* h-10 */
+    width: 2.5rem; /* w-10 */
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.meros-carousel-next:hover .meros-carousel-next-icon,
+.meros-carousel-prev:hover .meros-carousel-prev-icon {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.meros-carousel-next-icon-svg,
+.meros-carousel-prev-icon-svg {
+    height: 1rem;
+    width: 1rem;
+    color: white;
+}

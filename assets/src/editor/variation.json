@@ -1,0 +1,25 @@
+{
+    "name": "meros/dynamic-slide",
+    "title": "Dynamic Slide",
+    "description": "A dynamic slide block for the Meros Carousel block",
+    "attributes": {
+        "className": "meros-carousel-dynamic-query",
+        "layout": {
+            "type": "default",
+            "inherit": false
+        },
+        "query": {
+            "postType": "post",
+            "perPage": 5,
+            "order": "desc",
+            "orderBy": "date"
+        }
+    },
+    "scope": ["inserter", "transform"],
+    "icon": "format-image",
+    "isDefault": false,
+    "isActive": ["className"],
+    "supports": {
+        "__experimentalParent": ["meros/carousel"]
+    }
+}

@@ -1,0 +1,29 @@
+/* Default */
+.meros-carousel-navigation,
+.meros-carousel-indicators {
+    display: none;
+}
+
+/* Desktop */
+@media screen and (min-width: 769px) {
+    .meros-carousel-navigation:not(.hide-desktop),
+    .meros-carousel-indicators:not(.hide-desktop) {
+        display: block;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .meros-carousel-navigation:not(.hide-tablet),
+    .meros-carousel-indicators:not(.hide-tablet) {
+        display: block;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+    .meros-carousel-navigation:not(.hide-mobile),
+    .meros-carousel-indicators:not(.hide-mobile) {
+        display: block;
+    }
+}

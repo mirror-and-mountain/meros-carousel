@@ -1,0 +1,79 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "meros/carousel",
+    "version": "0.1.0",
+    "title": "Meros Carousel",
+    "category": "widgets",
+    "icon": "format-gallery",
+    "description": "A dynamic carousel block",
+    "textdomain": "meros-carosuel",
+    "example": {},
+    "supports": {
+        "html": false,
+        "dimensions": {
+            "minHeight": true
+        },
+        "color": {
+			"gradients": true,
+			"background": true,
+			"text": true
+		}
+    },
+    "editorScript": "file:./index.js",
+    "viewScript": "file:./view.js",
+    "style": "file:./style-index.css",
+    "attributes": {
+        "carouselType": {
+            "type": "string",
+            "default": "static"
+        },
+        "carouselOptions": {
+            "type": "object",
+            "default": {
+                "animationType": "slide",
+                "animationSpeed": 500,
+                "autoPlay": false,
+                "interval": 5000,
+                "showNav": ["desktop"],
+                "showIndicators": ["desktop", "tablet", "mobile"],
+                "featuredImages": {
+                    "enabled": true,
+                    "size": "cover",
+                    "position": "center",
+                    "repeat": "no-repeat"
+                }
+            }
+        },
+        "useParallax": {
+            "type": "boolean",
+            "default": true
+        },
+        "savedBlocks": {
+            "type": "object",
+            "default": {
+                "static": [],
+                "dynamic": []
+            }
+        },
+        "alignSlideContent": {
+            "type": "string",
+            "default": "center"
+        },
+        "style": {
+            "type": "object",
+            "default": {
+                "dimensions": {
+                    "minHeight": "450px"
+                },
+                "color": {
+                    "background": "#8ED1FC"
+                },
+                "overlay": {
+                    "color": "dark",
+                    "opacity": 20
+                }
+            }
+        }
+    }
+}
