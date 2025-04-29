@@ -7,7 +7,7 @@
   "category": "widgets",
   "icon": "format-gallery",
   "description": "A dynamic carousel block",
-  "textdomain": "meros-carosuel",
+  "textdomain": "meros-carousel",
   "example": {},
   "supports": {
     "html": false,
