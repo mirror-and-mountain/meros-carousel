@@ -11,14 +11,5 @@
         }
     ],
     "minimum-stability": "stable",
-    "repositories": {
-        "mirror-and-mountain/meros-contracts": {
-            "type": "path",
-            "url": "/Volumes/MM Dev/projects/wordpress/meros/packages/meros-contracts",
-            "options": {
-                "symlink": true
-            }
-        }
-    },
     "require": {}
 }
