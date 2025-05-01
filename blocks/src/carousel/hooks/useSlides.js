@@ -115,6 +115,7 @@ export function useSlides(
                     [carouselType]: mountedBlocks
                 }
             });
+            setSlideBlocks(mountedBlocks);
         }
     },[mountedBlocks]);
 
