@@ -12,7 +12,7 @@ export class MerosCarousel {
                 animationSpeed: 300,
                 autoPlay: false,
                 interval: 5000,
-                useAsPostBanner: false,
+                matchPost: false,
                 useParallax: false
             }, options
         );
@@ -21,7 +21,7 @@ export class MerosCarousel {
         this.isAnimating        = false;
         this.indicatorContainer = this.container.querySelector('.meros-carousel-indicators');
         this.indicators         = [];
-        this.bannerMap          = [];
+        this.postMap            = [];
         
         gsap.registerPlugin(ScrollTrigger);
         if (this?.slides?.length > 0) this.init();
@@ -54,10 +54,10 @@ export class MerosCarousel {
                     slide.appendChild(overlay);
                 }
 
-                if (this.options.useAsPostBanner) {
+                if (this.options.matchPost) {
                     const postInfo = getPostInfo(slide);
                     if (postInfo?.id) {
-                        this.bannerMap.push({ [index]: postInfo.id });
+                        this.postMap.push({ [index]: postInfo.id });
                     }
                 }
             }

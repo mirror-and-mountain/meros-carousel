@@ -5,7 +5,7 @@ function get_meros_carousel_path(): string {
 }
 
 function get_meros_carousel_uri(): string {
-    if ( dirname(__DIR__, 3) === WP_CONTENT_DIR . '/themes' ) {
+    if ( dirname(__DIR__, 4) === WP_CONTENT_DIR . '/themes' ) {
         return get_theme_file_uri( '/plugins/' . basename(dirname(__DIR__)) );
     }
     else {

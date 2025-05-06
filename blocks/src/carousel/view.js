@@ -1,16 +1,21 @@
 import { gsap } from 'gsap';
 import { MerosCarousel } from './classes/MerosCarousel.js';
 
-let isLivewireNavigate      = false;
-let currentCarouselInstance = null;
+let isLivewireNavigate  = false;
+let carouselInstances   = [];
 
 function initMerosCarousel() {
 	const containers = document.querySelectorAll('.meros-carousel');
-
+	let i = 0;
 	containers.forEach(container => {
-		// Prevent double initialization
-		if (container.dataset.initialized === 'true') return;
-		container.dataset.initialized = 'true';
+		
+		if (container.dataset.initialized === 'true' && isLivewireNavigate) {
+			const instance = carouselInstances[i];
+			navigateCarouselToPost(window.merosWiredPostId, instance);
+			return;
+		} else {
+			container.dataset.initialized = 'true';
+		}
 
 		if (!isLivewireNavigate) {
 			injectSpinnerOverCarousel(container);
@@ -27,7 +32,7 @@ function initMerosCarousel() {
 
 		const instance = new MerosCarousel(container, slides, options);
 		if (!instance) return;
-		currentCarouselInstance = instance;
+		carouselInstances.push(instance);
 
 		const indicatorOptions = JSON.parse(container.dataset.indicators || '{}');
 		const navOptions = JSON.parse(container.dataset.nav || '{}');
@@ -45,6 +50,8 @@ function initMerosCarousel() {
 			}
 			container.style.visibility = 'visible';
 		}, isLivewireNavigate ? 0 : 500);
+
+		i++;
 	});
 }
 
@@ -88,17 +95,17 @@ function injectSpinnerOverCarousel(container) {
 	document.body.appendChild(spinner);
 }
 
-function navigateCarouselToPost(postId, carouselInstance) {
-	if (!carouselInstance?.bannerMap || !postId) return;
+function navigateCarouselToPost(postId, instance) {
+	if (!instance?.postMap || !postId) return;
 
-	for (const obj of carouselInstance.bannerMap) {
+	for (const obj of instance.postMap) {
 		const [slideKey, mappedPostId] = Object.entries(obj)[0];
 		if (String(mappedPostId) !== String(postId)) continue;
 
 		const slideIndex = Number(slideKey);
-		if (slideIndex === carouselInstance.currentSlide) return;
+		if (slideIndex === instance.currentSlide) return;
 
-		carouselInstance.goToSlide(slideIndex);
+		instance.goToSlide(slideIndex);
 		break;
 	}
 }
@@ -111,5 +118,4 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('livewire:navigated', () => {
 	isLivewireNavigate = true;
 	initMerosCarousel();
-	navigateCarouselToPost(window.merosWiredPostId ?? null, currentCarouselInstance);
 });

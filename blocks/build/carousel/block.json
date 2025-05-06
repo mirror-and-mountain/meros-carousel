@@ -51,9 +51,12 @@
         }
       }
     },
-    "useAsPostBanner": {
-      "type": "boolean",
-      "default": false
+    "spaOptions": {
+      "type": "object",
+      "default": {
+        "persist": true,
+        "matchPost": true
+      }
     },
     "useParallax": {
       "type": "boolean",

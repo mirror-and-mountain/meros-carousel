@@ -14,7 +14,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
     const {
         carouselType,
         carouselOptions,
-        useAsPostBanner
+        spaOptions
     } = attributes;
 
     const {
@@ -24,7 +24,13 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
         interval
     } = carouselOptions;
 
+    const {
+        persist,
+        matchPost
+    } = spaOptions;
 
+    const dynamicPageEnabled = window.MerosDynamicPage ?? false;
+    
     const handleReset = () => {
         setAttributes({
             carouselType: 'static',
@@ -39,161 +45,210 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
         });
     };
 
+    const handleSPAReset = () => {
+        setAttributes({
+            spaOptions: {
+                persist: true,
+                matchPost: true
+
+            }
+        });
+    };
+
     return (
-        <ToolsPanel label="Carousel Settings" resetAll={ handleReset }>
-            <ToolsPanelItem
-                label="Carousel Type"
-                hasValue={() => 
-                    hasCustomValue(carouselType, 'static')
-                }
-                isShownByDefault={ true }
-                onDeselect={() => 
-                    updateOption('carouselType', 'static')
-                }
-            >
-                <SelectControl
+        <>
+            <ToolsPanel label="Carousel Settings" resetAll={ handleReset }>
+                <ToolsPanelItem
                     label="Carousel Type"
-                    value={ carouselType || 'static' }
-                    options={[
-                        {label: 'Static Banner', value: 'static'},
-                        {label: 'Dynamic Banner', value: 'dynamic'}
-                    ]}
-                    onChange={(value) => {
-                        updateOption('carouselType', value);
-                        if (value === 'static') {
-                            setAttributes({
-                                useAsPostBanner: false
-                            });
-                        }
-                    }}
-                />
-            </ToolsPanelItem>
+                    hasValue={() => 
+                        hasCustomValue(carouselType, 'static')
+                    }
+                    isShownByDefault={ true }
+                    onDeselect={() => 
+                        updateOption('carouselType', 'static')
+                    }
+                >
+                    <SelectControl
+                        label="Carousel Type"
+                        value={ carouselType || 'static' }
+                        options={[
+                            {label: 'Static Banner', value: 'static'},
+                            {label: 'Dynamic Banner', value: 'dynamic'}
+                        ]}
+                        onChange={(value) => {
+                            updateOption('carouselType', value);
+                            if (value === 'static') {
+                                setAttributes({
+                                    useAsPostBanner: false
+                                });
+                            }
+                        }}
+                    />
+                </ToolsPanelItem>
 
-            <ToolsPanelItem
-                label="Animation Type"
-                hasValue={() => 
-                    hasCustomValue(animationType, 'slide')
-                }
-                isShownByDefault={ true }
-                onDeselect={() =>
-                    updateOption('carouselOptions.animationType', 'slide', true)
-                }
-            >
-                <SelectControl 
+                <ToolsPanelItem
                     label="Animation Type"
-                    value={ animationType || 'slide' }
-                    options={[
-                        {label: 'Slide', value: 'slide'},
-                        {label: 'Fade', value: 'fade'}
-                    ]}
-                    onChange={(value) => 
+                    hasValue={() => 
+                        hasCustomValue(animationType, 'slide')
+                    }
+                    isShownByDefault={ true }
+                    onDeselect={() =>
+                        updateOption('carouselOptions.animationType', 'slide', true)
+                    }
+                >
+                    <SelectControl 
+                        label="Animation Type"
+                        value={ animationType || 'slide' }
+                        options={[
+                            {label: 'Slide', value: 'slide'},
+                            {label: 'Fade', value: 'fade'}
+                        ]}
+                        onChange={(value) => 
+                            updateOption(
+                                'carouselOptions.animationType', value, true
+                            )
+                        }
+                    />
+                </ToolsPanelItem>
+
+                <ToolsPanelItem
+                    label="Animation Speed"
+                    hasValue={() => 
+                        hasCustomValue(animationSpeed, 500)
+                    }
+                    isShownByDefault={ true }
+                    onDeselect={() =>
                         updateOption(
-                            'carouselOptions.animationType', value, true
+                            'carouselOptions.animationSpeed', 500, true
                         )
                     }
-                />
-            </ToolsPanelItem>
+                >
+                    <RangeControl 
+                        label="Animation Speed (ms)"
+                        value={ animationSpeed || 500 }
+                        onChange={(value) => 
+                            updateOption(
+                                'carouselOptions.animationSpeed', value, true
+                            )
+                        }
+                        min={ 100 }
+                        max={ 5000 }
+                    />
+                </ToolsPanelItem>
 
-            <ToolsPanelItem
-                label="Animation Speed"
-                hasValue={() => 
-                    hasCustomValue(animationSpeed, 500)
-                }
-                isShownByDefault={ true }
-                onDeselect={() =>
-                    updateOption(
-                        'carouselOptions.animationSpeed', 500, true
-                    )
-                }
-            >
-                <RangeControl 
-                    label="Animation Speed (ms)"
-                    value={ animationSpeed || 500 }
-                    onChange={(value) => 
+                <ToolsPanelItem
+                    label="Auto Play"
+                    hasValue={() => 
+                        hasCustomValue(autoPlay, false)
+                    }
+                    isShownByDefault={ true }
+                    onDeselect={() =>
                         updateOption(
-                            'carouselOptions.animationSpeed', value, true
+                            'carouselOptions.autoPlay', false, true
                         )
                     }
-                    min={ 100 }
-                    max={ 5000 }
-                />
-            </ToolsPanelItem>
+                >
+                    <ToggleControl 
+                        label="Auto Play"
+                        checked={ autoPlay }
+                        onChange={ (value) =>
+                            updateOption(
+                                'carouselOptions.autoPlay', value, true
+                            )
+                        }
+                    />
+                </ToolsPanelItem>
 
-            <ToolsPanelItem
-                label="Auto Play"
-                hasValue={() => 
-                    hasCustomValue(autoPlay, false)
-                }
-                isShownByDefault={ true }
-                onDeselect={() =>
-                    updateOption(
-                        'carouselOptions.autoPlay', false, true
-                    )
-                }
-            >
-            <ToggleControl 
-                label="Auto Play"
-                checked={ autoPlay || false }
-                onChange={ (value) =>
-                    updateOption(
-                        'carouselOptions.autoPlay', value, true
-                    )
-                }
-            />
-            </ToolsPanelItem>
-
-            <ToolsPanelItem
-                label="Interval Time (ms)"
-                hasValue={() => 
-                    hasCustomValue(interval, 5000)
-                }
-                isShownByDefault={ true }
-                onDeselect={() => 
-                    updateOption(
-                        'carouselOptions.interval', 5000, true
-                    )
-                }
-            >
-                <RangeControl 
+                <ToolsPanelItem
                     label="Interval Time (ms)"
-                    value={ interval || 5000 }
-                    onChange={ (value) => 
+                    hasValue={() => 
+                        hasCustomValue(interval, 5000)
+                    }
+                    isShownByDefault={ true }
+                    onDeselect={() => 
                         updateOption(
-                            'carouselOptions.interval', value, true
+                            'carouselOptions.interval', 5000, true
                         )
                     }
-                    min={ 1000 }
-                    max={ 10000 }
-                    disabled={!(autoPlay)}
-                />
-            </ToolsPanelItem>
+                >
+                    <RangeControl 
+                        label="Interval Time (ms)"
+                        value={ interval || 5000 }
+                        onChange={ (value) => 
+                            updateOption(
+                                'carouselOptions.interval', value, true
+                            )
+                        }
+                        min={ 1000 }
+                        max={ 10000 }
+                        disabled={!(autoPlay)}
+                    />
+                </ToolsPanelItem>
+            </ToolsPanel>
 
-            { carouselType === 'dynamic' && (
-                <>
+            { dynamicPageEnabled && (
+                <ToolsPanel label="Single Page Application Behaviour" resetAll={ handleSPAReset }>
                     <ToolsPanelItem
-                        label="Use as post banner"
+                        label="Persist on navigate"
                         hasValue={() => 
-                            hasCustomValue(useAsPostBanner, false)
+                            hasCustomValue(persist, true)
                         }
                         isShownByDefault={ true }
                         onDeselect={() =>
-                            updateOption(
-                                'useAsPostBanner', false
-                            )
+                            setAttributes({
+                                spaOptions: {
+                                    ...spaOptions,
+                                    persist: true
+                                }
+                            })
                         }
                     >
                         <ToggleControl 
-                            label="Use as post banner"
-                            checked={ useAsPostBanner || false }
+                            label="Persist position on navigate"
+                            checked={ persist }
                             onChange={ (value) =>
-                                updateOption(
-                                    'useAsPostBanner', value
-                                )
+                                setAttributes({
+                                    spaOptions: {
+                                        ...spaOptions,
+                                        persist: value
+                                    }
+                                })
                             }
                         />
                     </ToolsPanelItem>
-                </>
+
+                    { carouselType === 'dynamic' && (
+                         <ToolsPanelItem
+                            label="Go to relevant slide navigate"
+                            hasValue={() => 
+                                hasCustomValue(matchPost, true)
+                            }
+                            isShownByDefault={ true }
+                            onDeselect={() =>
+                                setAttributes({
+                                    spaOptions: {
+                                        ...spaOptions,
+                                        matchPost: true
+                                    }
+                                })
+                            }
+                        >
+                            <ToggleControl 
+                                label="Go to relevant slide on navigate"
+                                checked={ matchPost }
+                                onChange={ (value) =>
+                                    setAttributes({
+                                        spaOptions: {
+                                            ...spaOptions,
+                                            matchPost: value
+                                        }
+                                    })
+                                }
+                            />
+                        </ToolsPanelItem>
+                    )}
+                </ToolsPanel>
             )}
-        </ToolsPanel>
+        </>
     );
 };

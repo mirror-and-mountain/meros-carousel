@@ -5,7 +5,7 @@ export default function Save({ attributes }) {
     const {
         carouselType,
         carouselOptions,
-        useAsPostBanner,
+        spaOptions,
         useParallax,
         alignSlideContent,
         style       
@@ -20,8 +20,12 @@ export default function Save({ attributes }) {
         showIndicators
     } = carouselOptions;
 
+    const {
+        matchPost
+    } = spaOptions;
+
     const instanceOptions = JSON.stringify(
-        { animationType, animationSpeed, autoPlay, interval, useAsPostBanner, useParallax }
+        { animationType, animationSpeed, autoPlay, interval, matchPost, useParallax }
     );
 
     const navOptions = JSON.stringify(showNav);
