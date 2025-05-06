@@ -1,23 +1,28 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger.js';
+import { getPostInfo } from '../utils/getPostInfo.js';
 
 export class MerosCarousel {
     constructor(container, slides, options = {}) {
         this.container = container;
-        this.slides  = slides;
-        this.options = Object.assign(
+        this.slides    = slides;
+        this.options   = Object.assign(
             {
                 animationType: 'slide',
                 animationSpeed: 300,
                 autoPlay: false,
                 interval: 5000,
+                useAsPostBanner: false,
                 useParallax: false
             }, options
         );
-        this.currentSlide = 0;
-        this.isAnimating = false;
+
+        this.currentSlide       = 0;
+        this.isAnimating        = false;
         this.indicatorContainer = this.container.querySelector('.meros-carousel-indicators');
-        this.indicators = [];
+        this.indicators         = [];
+        this.bannerMap          = [];
+        
         gsap.registerPlugin(ScrollTrigger);
         if (this?.slides?.length > 0) this.init();
     }
@@ -47,6 +52,13 @@ export class MerosCarousel {
                         overlay.style.backgroundColor = this.container.dataset.overlay;
                     }
                     slide.appendChild(overlay);
+                }
+
+                if (this.options.useAsPostBanner) {
+                    const postInfo = getPostInfo(slide);
+                    if (postInfo?.id) {
+                        this.bannerMap.push({ [index]: postInfo.id });
+                    }
                 }
             }
             this.createIndicator(index);

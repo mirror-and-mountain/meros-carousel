@@ -68,6 +68,7 @@ export default function Edit ({attributes, setAttributes, clientId}) {
             animationSpeed: carouselOptions?.animationSpeed || 300,
             autoPlay: false,
             interval: carouselOptions?.interval || 5000,
+            useAsPostBanner: false,
             useParallax: useParallax
         };
 

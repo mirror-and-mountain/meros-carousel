@@ -51,6 +51,10 @@
         }
       }
     },
+    "useAsPostBanner": {
+      "type": "boolean",
+      "default": false
+    },
     "useParallax": {
       "type": "boolean",
       "default": true

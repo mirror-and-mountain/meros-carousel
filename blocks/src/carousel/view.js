@@ -1,7 +1,8 @@
 import { gsap } from 'gsap';
 import { MerosCarousel } from './classes/MerosCarousel.js';
 
-let isLivewireNavigate = false;
+let isLivewireNavigate      = false;
+let currentCarouselInstance = null;
 
 function initMerosCarousel() {
 	const containers = document.querySelectorAll('.meros-carousel');
@@ -11,7 +12,6 @@ function initMerosCarousel() {
 		if (container.dataset.initialized === 'true') return;
 		container.dataset.initialized = 'true';
 
-		// 👉 Only show spinner on initial load (not on Livewire navigate)
 		if (!isLivewireNavigate) {
 			injectSpinnerOverCarousel(container);
 		}
@@ -27,6 +27,7 @@ function initMerosCarousel() {
 
 		const instance = new MerosCarousel(container, slides, options);
 		if (!instance) return;
+		currentCarouselInstance = instance;
 
 		const indicatorOptions = JSON.parse(container.dataset.indicators || '{}');
 		const navOptions = JSON.parse(container.dataset.nav || '{}');
@@ -87,7 +88,21 @@ function injectSpinnerOverCarousel(container) {
 	document.body.appendChild(spinner);
 }
 
-// 👇 Hook into classic and Livewire navigations
+function navigateCarouselToPost(postId, carouselInstance) {
+	if (!carouselInstance?.bannerMap || !postId) return;
+
+	for (const obj of carouselInstance.bannerMap) {
+		const [slideKey, mappedPostId] = Object.entries(obj)[0];
+		if (String(mappedPostId) !== String(postId)) continue;
+
+		const slideIndex = Number(slideKey);
+		if (slideIndex === carouselInstance.currentSlide) return;
+
+		carouselInstance.goToSlide(slideIndex);
+		break;
+	}
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 	isLivewireNavigate = false;
 	initMerosCarousel();
@@ -96,4 +111,5 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('livewire:navigated', () => {
 	isLivewireNavigate = true;
 	initMerosCarousel();
+	navigateCarouselToPost(window.merosWiredPostId ?? null, currentCarouselInstance);
 });

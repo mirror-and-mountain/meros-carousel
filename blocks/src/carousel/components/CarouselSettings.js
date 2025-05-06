@@ -13,7 +13,8 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
 
     const {
         carouselType,
-        carouselOptions
+        carouselOptions,
+        useAsPostBanner
     } = attributes;
 
     const {
@@ -27,6 +28,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
     const handleReset = () => {
         setAttributes({
             carouselType: 'static',
+            useAsPostBanner: 'false',
             carouselOptions: {
                 ...carouselOptions,
                 animationType: 'slide',
@@ -56,9 +58,14 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                         {label: 'Static Banner', value: 'static'},
                         {label: 'Dynamic Banner', value: 'dynamic'}
                     ]}
-                    onChange={(value) => 
-                        updateOption('carouselType', value)
-                    }
+                    onChange={(value) => {
+                        updateOption('carouselType', value);
+                        if (value === 'static') {
+                            setAttributes({
+                                useAsPostBanner: false
+                            });
+                        }
+                    }}
                 />
             </ToolsPanelItem>
 
@@ -160,6 +167,33 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                     disabled={!(autoPlay)}
                 />
             </ToolsPanelItem>
+
+            { carouselType === 'dynamic' && (
+                <>
+                    <ToolsPanelItem
+                        label="Use as post banner"
+                        hasValue={() => 
+                            hasCustomValue(useAsPostBanner, false)
+                        }
+                        isShownByDefault={ true }
+                        onDeselect={() =>
+                            updateOption(
+                                'useAsPostBanner', false
+                            )
+                        }
+                    >
+                        <ToggleControl 
+                            label="Use as post banner"
+                            checked={ useAsPostBanner || false }
+                            onChange={ (value) =>
+                                updateOption(
+                                    'useAsPostBanner', value
+                                )
+                            }
+                        />
+                    </ToolsPanelItem>
+                </>
+            )}
         </ToolsPanel>
     );
 };
