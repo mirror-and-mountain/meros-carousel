@@ -1,4 +1,5 @@
 {
+    "$schema": "https://getcomposer.org/schema.json",
     "name": "mirror-and-mountain/meros-carousel",
     "description": "A dynamic carousel block for Wordpress",
     "type": "wordpress-plugin",
@@ -9,6 +10,7 @@
             "email": "toby@mirrorandmountain.com"
         }
     ],
+    "require": {},
     "minimum-stability": "stable",
-    "require": {}
+    "prefer-stable": true
 }
