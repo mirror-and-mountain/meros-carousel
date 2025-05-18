@@ -42,13 +42,13 @@ export function NavigationSettings({ attributes, setAttributes, updateOption }) 
 
     return (
         <>
-            <ToolsPanel label="Navigation" resetAll={ handleReset }>
+            <ToolsPanel label={__('Navigation', 'meros-carousel' )} resetAll={ handleReset }>
                 <PanelDescription>
                     Select the screen sizes where navigation arrows should appear: 
                     desktop, tablet, and/or mobile. Leave blank to hide them completely.
                 </PanelDescription>
                 <ToolsPanelItem
-                    label="Navigation Arrows"
+                    label={__('Navigation Arrows', 'meros-carousel' )}
                     hasValue={() => 
                         hasCustomValue(showNav, navDefaults)
                     }
@@ -71,13 +71,13 @@ export function NavigationSettings({ attributes, setAttributes, updateOption }) 
                 </ToolsPanelItem>
             </ToolsPanel>
 
-            <ToolsPanel label="Indicators" resetAll={ handleReset }>
+            <ToolsPanel label={__('Indicators', 'meros-carousel' )} resetAll={ handleReset }>
                 <PanelDescription>
                     Select the screen sizes where carousel indicators should appear: 
                     desktop, tablet, and/or mobile. Leave blank to hide them completely.
                 </PanelDescription>
                 <ToolsPanelItem
-                    label="Indicators"
+                    label={__('Indicators', 'meros-carousel' )}
                     hasValue={() => 
                         hasCustomValue(showIndicators, indicatorDefaults)
                     }

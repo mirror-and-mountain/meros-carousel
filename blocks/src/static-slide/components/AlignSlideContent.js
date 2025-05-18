@@ -16,9 +16,9 @@ export function AlignSlideContent({ attributes, setAttributes }) {
     }
 
     return (
-        <ToolsPanel label="Align Slide Content" resetAll={setValue}>
+        <ToolsPanel label={__('Align Slide Content', 'meros-carousel' )} resetAll={setValue}>
             <ToolsPanelItem
-                label="Align Slide Content"
+                label={__('Align Slide Content', 'meros-carousel' )}
                 hasValue={() => 
                     alignSlideContent !== 'center' ? true : false
                 }
@@ -26,7 +26,7 @@ export function AlignSlideContent({ attributes, setAttributes }) {
                 onDeselect={setValue}
             >
                 <SelectControl
-                    label="Position"
+                    label={__('Position', 'meros-carousel' )}
                     value={ alignSlideContent }
                     options={[
                         { label: 'Top', value: 'start' },

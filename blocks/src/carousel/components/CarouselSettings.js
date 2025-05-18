@@ -57,9 +57,9 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
 
     return (
         <>
-            <ToolsPanel label="Carousel Settings" resetAll={ handleReset }>
+            <ToolsPanel label={__('Carousel Settings', 'meros-carousel' )} resetAll={ handleReset }>
                 <ToolsPanelItem
-                    label="Carousel Type"
+                    label={__('Carousel Type', 'meros-carousel' )}
                     hasValue={() => 
                         hasCustomValue(carouselType, 'static')
                     }
@@ -69,7 +69,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                     }
                 >
                     <SelectControl
-                        label="Carousel Type"
+                        label={__('Carousel Type', 'meros-carousel' )}
                         value={ carouselType || 'static' }
                         options={[
                             {label: 'Static Banner', value: 'static'},
@@ -87,7 +87,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                 </ToolsPanelItem>
 
                 <ToolsPanelItem
-                    label="Animation Type"
+                    label={__('Animation Type', 'meros-carousel' )}
                     hasValue={() => 
                         hasCustomValue(animationType, 'slide')
                     }
@@ -97,7 +97,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                     }
                 >
                     <SelectControl 
-                        label="Animation Type"
+                        label={__('Animation Type', 'meros-carousel' )}
                         value={ animationType || 'slide' }
                         options={[
                             {label: 'Slide', value: 'slide'},
@@ -112,7 +112,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                 </ToolsPanelItem>
 
                 <ToolsPanelItem
-                    label="Animation Speed"
+                    label={__('Animation Speed', 'meros-carousel' )}
                     hasValue={() => 
                         hasCustomValue(animationSpeed, 500)
                     }
@@ -124,7 +124,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                     }
                 >
                     <RangeControl 
-                        label="Animation Speed (ms)"
+                        label={__('Animation Speed (ms)', 'meros-carousel' )}
                         value={ animationSpeed || 500 }
                         onChange={(value) => 
                             updateOption(
@@ -137,7 +137,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                 </ToolsPanelItem>
 
                 <ToolsPanelItem
-                    label="Auto Play"
+                    label={__('Auto Play', 'meros-carousel' )}
                     hasValue={() => 
                         hasCustomValue(autoPlay, false)
                     }
@@ -149,7 +149,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                     }
                 >
                     <ToggleControl 
-                        label="Auto Play"
+                        label={__('Auto Play', 'meros-carousel' )}
                         checked={ autoPlay }
                         onChange={ (value) =>
                             updateOption(
@@ -160,7 +160,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                 </ToolsPanelItem>
 
                 <ToolsPanelItem
-                    label="Interval Time (ms)"
+                    label={__('Interval Time (ms)', 'meros-carousel' )}
                     hasValue={() => 
                         hasCustomValue(interval, 5000)
                     }
@@ -172,7 +172,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                     }
                 >
                     <RangeControl 
-                        label="Interval Time (ms)"
+                        label={__('Interval Time (ms)', 'meros-carousel' )}
                         value={ interval || 5000 }
                         onChange={ (value) => 
                             updateOption(
@@ -187,9 +187,9 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
             </ToolsPanel>
 
             { dynamicPageEnabled && (
-                <ToolsPanel label="Single Page Application Behaviour" resetAll={ handleSPAReset }>
+                <ToolsPanel label={__('Single Page Application Behaviour', 'meros-carousel' )} resetAll={ handleSPAReset }>
                     <ToolsPanelItem
-                        label="Persist on navigate"
+                        label={__('Persist on navigate', 'meros-carousel' )}
                         hasValue={() => 
                             hasCustomValue(persist, true)
                         }
@@ -204,7 +204,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                         }
                     >
                         <ToggleControl 
-                            label="Persist position on navigate"
+                            label={__('Persist position on navigate', 'meros-carousel' )}
                             checked={ persist }
                             onChange={ (value) =>
                                 setAttributes({
@@ -219,7 +219,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
 
                     { carouselType === 'dynamic' && (
                          <ToolsPanelItem
-                            label="Go to relevant slide navigate"
+                            label={__('Go to relevant slide on navigate', 'meros-carousel' )}
                             hasValue={() => 
                                 hasCustomValue(matchPost, true)
                             }
@@ -234,7 +234,7 @@ export const CarouselSettings = ({ attributes, setAttributes, updateOption }) =>
                             }
                         >
                             <ToggleControl 
-                                label="Go to relevant slide on navigate"
+                                label={__('Go to relevant slide on navigate', 'meros-carousel' )}
                                 checked={ matchPost }
                                 onChange={ (value) =>
                                     setAttributes({

@@ -44,11 +44,11 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
     }
 
     return (
-        <ToolsPanel label="Overlay & Background" resetAll={ handleReset }>
+        <ToolsPanel label={__('Overlay & Background', 'meros-carousel' )} resetAll={ handleReset }>
             {carouselType === 'dynamic' && (
                 <>
                     <ToolsPanelItem
-                        label="Overlay Color" 
+                        label={__('Overlay Colour', 'meros-carousel' )} 
                         hasValue={() => 
                             style?.overlay?.color !== 'dark' ? true : false
                         } 
@@ -66,7 +66,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                         }}
                     >
                         <ToggleGroupControl
-                            label={__('Overlay Color', 'text-domain')}
+                            label={__('Overlay Colour', 'meros-carousel')}
                             value={style?.overlay?.color}
                             onChange={(color) => {
                                 setAttributes({
@@ -83,17 +83,17 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                         >
                             <ToggleGroupControlOption
                                 value="dark"
-                                label={__('Dark', 'text-domain')}
+                                label={__('Dark', 'meros-carousel')}
                             />
                             <ToggleGroupControlOption
                                 value="light"
-                                label={__('Light', 'text-domain')}
+                                label={__('Light', 'meros-carousel')}
                             />
                         </ToggleGroupControl>
                     </ToolsPanelItem>
 
                     <ToolsPanelItem 
-                        label="Overlay Opacity"
+                        label={__('Overlay Opacity', 'meros-carousel' )}
                         hasValue={() => 
                             style?.overlay?.opacity !== 20 ? true : false
                         }  
@@ -111,7 +111,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                         }}
                     >
                         <RangeControl
-                            label={__('Overlay Opacity', 'text-domain')}
+                            label={__('Overlay Opacity', 'meros-carousel')}
                             value={style?.overlay?.opacity ?? 20}
                             onChange={(value) => setAttributes({
                                 style: {
@@ -129,7 +129,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                     </ToolsPanelItem>
 
                     <ToolsPanelItem 
-                        label="Used Featured Images"
+                        label={__('Use Featured Images', 'meros-carousel')}
                         hasValue={() => 
                             !featuredImages.enabled ? true : false
                         }
@@ -147,7 +147,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                         }
                     >
                         <ToggleControl
-                            label="Use featured images as background"
+                            label={__('Use featured images as background', 'meros-carousel')}
                             checked={ featuredImages.enabled }
                             onChange={(value) => 
                                 setAttributes({
@@ -166,7 +166,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
             )}
 
             <ToolsPanelItem 
-                label="Parallax Effect"
+                label={__('Parallax Effect', 'meros-carousel')}
                 hasValue={() => 
                     !useParallax ? true : false
                 }
@@ -176,7 +176,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                 }
             >
                 <ToggleControl
-                    label="Use Parallax Effect"
+                    label={__('Use Parallax Effect', 'meros-carousel')}
                     checked={ useParallax }
                     onChange={(value) => 
                         updateOption('useParallax', value, true)
@@ -188,7 +188,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
             {carouselType === 'dynamic' &&(
                 <>
                     <ToolsPanelItem 
-                        label="Background Size"
+                        label={__('Background Size', 'meros-carousel')}
                         hasValue={() => 
                             featuredImages.size !== 'cover' ? true : false
                         }
@@ -206,7 +206,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                         }
                         >
                         <SelectControl
-                            label="Background Size"
+                            label={__('Background Size', 'meros-carousel')}
                             value={ featuredImages?.size || 'cover' }
                             options={[
                                 { label: 'Cover', value: 'cover' },
@@ -228,7 +228,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                     </ToolsPanelItem>
 
                     <ToolsPanelItem 
-                        label="Background Position"
+                        label={__('Background Position', 'meros-carousel')}
                         hasValue={() => 
                             featuredImages.position !== 'center' ? true : false
                         }
@@ -246,7 +246,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                         }
                         >
                             <SelectControl
-                                label="Background Postion"
+                                label={__('Background Position', 'meros-carousel')}
                                 value={ featuredImages?.position || 'center' }
                                 options={[
                                     { label: 'Center', value: 'center' },
@@ -269,7 +269,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                     </ToolsPanelItem>
 
                     <ToolsPanelItem 
-                        label="Background Repeat"
+                        label={__('Background Repeat', 'meros-carousel')}
                         hasValue={() => 
                             featuredImages.repeat !== 'no-repeat' ? true : false
                         }
@@ -287,7 +287,7 @@ export function OverlayAndBackground({ attributes, setAttributes, updateOption }
                         }
                         >
                             <SelectControl
-                                label="Background Repeat"
+                                label={__('Background Repeat', 'meros-carousel')}
                                 value={ featuredImages?.repeat || 'no-repeat' }
                                 options={[
                                     { label: 'No Repeat', value: 'no-repeat' },

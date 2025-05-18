@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Ensures featured image options are available when the block is rendered.
+ */
 add_filter('render_block_data', function ( $block ) {
     static $carouselContext = null;
 
@@ -21,6 +23,10 @@ add_filter('render_block_data', function ( $block ) {
     return $block;
 }, 10, 1);
 
+/**
+ * Gets featured image urls for slide styling when a dynamic
+ * slide is used.
+ */
 add_filter('render_block', function ( $content, $block ) {
     if ($block['blockName'] !== 'core/post-template') {
         return $content;

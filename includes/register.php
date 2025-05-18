@@ -1,9 +1,19 @@
 <?php
-
+/**
+ * Returns the plugin's path.
+ *
+ * @return string
+ */
 function get_meros_carousel_path(): string {
     return dirname(__DIR__);
 }
 
+/**
+ * Provides a modified URI if the plugin is installed in a Meros powered theme.
+ * This is required for properly enqueuing assets.
+ *
+ * @return string
+ */
 function get_meros_carousel_uri(): string {
     if ( dirname(__DIR__, 4) === WP_CONTENT_DIR . '/themes' ) {
         return get_theme_file_uri( '/plugins/' . basename(dirname(__DIR__)) );
@@ -13,6 +23,11 @@ function get_meros_carousel_uri(): string {
     }
 }
 
+/**
+ * Registers the meros carousel block.
+ *
+ * @return void
+ */
 function meros_carousel_register_blocks() {
 
     $blocks_path = wp_normalize_path(get_meros_carousel_path() . '/blocks/build/');
@@ -23,6 +38,11 @@ function meros_carousel_register_blocks() {
     }
 }
 
+/**
+ * Enqueues the query block variation for dynamic slides.
+ *
+ * @return void
+ */
 function meros_carousel_enqueue_scripts() {
 
     $assets_path = wp_normalize_path(get_meros_carousel_path() . '/assets/build/');

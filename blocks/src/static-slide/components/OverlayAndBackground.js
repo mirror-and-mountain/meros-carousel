@@ -24,9 +24,9 @@ export function OverlayAndBackground({ attributes, setAttributes }) {
     }
 
     return (
-        <ToolsPanel label="Overlay & Background" resetAll={ handleReset }>
+        <ToolsPanel label={__('Overlay & Background', 'meros-carousel' )} resetAll={ handleReset }>
             <ToolsPanelItem
-                label="Overlay Color" 
+                label={__('Overlay Colour', 'meros-carousel' )} 
                 hasValue={() => 
                     style?.overlay?.color !== 'dark' ? true : false
                 } 
@@ -44,7 +44,7 @@ export function OverlayAndBackground({ attributes, setAttributes }) {
                 }}
             >
                 <ToggleGroupControl
-                    label={__('Overlay Color', 'text-domain')}
+                    label={__('Overlay Colour', 'meros-carousel')}
                     value={style?.overlay?.color}
                     onChange={(color) => {
                         setAttributes({
@@ -61,17 +61,17 @@ export function OverlayAndBackground({ attributes, setAttributes }) {
                 >
                     <ToggleGroupControlOption
                         value="dark"
-                        label={__('Dark', 'text-domain')}
+                        label={__('Dark', 'meros-carousel')}
                     />
                     <ToggleGroupControlOption
                         value="light"
-                        label={__('Light', 'text-domain')}
+                        label={__('Light', 'meros-carousel')}
                     />
                 </ToggleGroupControl>
             </ToolsPanelItem>
 
             <ToolsPanelItem 
-                label="Overlay Opacity"
+                label={__('Overlay Opacity', 'meros-carousel' )}
                 hasValue={() => 
                     style?.overlay?.opacity !== 20 ? true : false
                 }  
@@ -89,7 +89,7 @@ export function OverlayAndBackground({ attributes, setAttributes }) {
                 }}
             >
                 <RangeControl
-                    label={__('Overlay Opacity', 'text-domain')}
+                    label={__('Overlay Opacity', 'meros-carousel' )}
                     value={style?.overlay?.opacity ?? 20}
                     onChange={(value) => setAttributes({
                         style: {
